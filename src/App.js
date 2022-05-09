@@ -1,29 +1,6 @@
 import React, { useState } from "react";
 
 function App() {
-  // creating our status
-  const [screen, setScreen] = useState("");
-  const [result, setResult] = useState("");
-
-  const operators = ["/", "*", "+", ".", "-"];
-
-  const updateScreen = (value) => {
-    // condition to prevent an oprator to repeat twis repectively
-    if (
-      (operators.includes(value) && screen === "") ||
-      (operators.includes(value) && operators.includes(screen.slice(-1)))
-    ) {
-      return
-    }
-    setScreen(screen + value);
-
-    // when the operator is to clicked
-    if (!operators.includes(value)) {
-      // console.log(screen);
-      setResult(eval(screen + value).toString());
-    }
-  };
-
   // function to generate buttons from 1-9
   const createButtons = () => {
     let digits = [];
@@ -38,11 +15,39 @@ function App() {
     return digits;
   };
 
+  // creating our states
+  const [screen, setScreen] = useState("");
+  const [result, setResult] = useState("");
+
+  const operators = ["/", "*", "+", ".", "-"];
+
+  // updating the vlue on the screen/display
+  const updateScreen = (value) => {
+    // condition to prevent an oprator to repeat twis repectively
+    if (
+      (operators.includes(value) && screen === "") ||
+      (operators.includes(value) && operators.includes(screen.slice(-1)))
+    ) {
+      return;
+    }
+    setScreen(screen + value);
+
+    // when the operator is to clicked
+    if (!operators.includes(value)) {
+      // console.log(screen);
+      setResult(eval(screen + value).toString());
+    }
+  };
+
+const calculate = () => {
+  setScreen(eval(screen).toString());
+  setResult("ans");
+}
   return (
     <div className="App">
       <div className="calculator">
         <div className="display">
-          {result ? <span>({result})</span>: ""}
+          {result ? <span>({result})</span> : ""}
           &nbsp;
           {screen || "0"}
         </div>
@@ -57,7 +62,7 @@ function App() {
           {createButtons()}
           <button onClick={() => updateScreen("0")}>0</button>
           <button onClick={() => updateScreen(".")}>.</button>
-          <button>=</button>
+          <button onClick={calculate}>=</button>
         </div>
       </div>
     </div>
