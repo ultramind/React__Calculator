@@ -4,7 +4,7 @@ function App() {
   const createButtons = () => {
     let digits = [];
     let numBtn = 10
-    for (let i = 0; i < numBtn; i++) {
+    for (let i = 1; i < numBtn; i++) {
       digits.push(
         <button key={i}>{i}</button>
       )
@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <div className="calculator">
         <div className="display">
-          (0)0
+          <span>(0)</span>0
         </div>
         <div className="operators">
           <button>/</button>
