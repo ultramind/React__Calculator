@@ -39,9 +39,15 @@ function App() {
     }
   };
 
+  // Calculte when the eqail sign is clicked
 const calculate = () => {
   setScreen(eval(screen).toString());
   setResult("ans");
+}
+
+// click to delete value from the screen
+const deleteValue = () =>{
+  setScreen(screen.slice(0,-1));
 }
   return (
     <div className="App">
@@ -56,7 +62,7 @@ const calculate = () => {
           <button onClick={() => updateScreen("*")}>*</button>
           <button onClick={() => updateScreen("+")}>+</button>
           <button onClick={() => updateScreen("-")}>-</button>
-          <button>DEL</button>
+          <button onClick={deleteValue}>DEL</button>
         </div>
         <div className="digits">
           {createButtons()}
